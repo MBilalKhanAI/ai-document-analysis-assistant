@@ -1,0 +1,54 @@
+[project]
+name = "ai-document-assistant"
+version = "0.1.0"
+description = "An AI-powered document processing and analysis assistant"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+dependencies = [
+    "chainlit>=0.7.0,<2.4.201",
+    "langchain>=0.1.0",
+    "langchain-community>=0.0.1",
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "chromadb>=0.4.22",
+    "PyPDF2>=3.0.0",
+    "python-docx>=1.0.1",
+    "watchfiles>=0.20.0,<0.21.0",
+]
+requires-python = ">=3.9"
+readme = "README.md"
+license = "MIT"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/llm_drive_chatbot"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.black]
+target-version = ["py39"]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.uv]
+managed = true

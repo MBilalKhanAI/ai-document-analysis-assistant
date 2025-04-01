@@ -1,0 +1,33 @@
+name: Dependencies
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sunday
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update Python dependencies
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: backend
+          commit-message: 'chore: update Python dependencies'
+          title: 'chore: update Python dependencies'
+          body: 'Automated dependency updates for Python packages'
+          branch: update-python-deps
+          delete-branch: true
+          labels: dependencies, python
+
+      - name: Update Node.js dependencies
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: frontend
+          commit-message: 'chore: update Node.js dependencies'
+          title: 'chore: update Node.js dependencies'
+          body: 'Automated dependency updates for Node.js packages'
+          branch: update-node-deps
+          delete-branch: true
+          labels: dependencies, nodejs 
